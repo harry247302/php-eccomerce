@@ -36,3 +36,7 @@ class CategoryController extends Controller
         return view('subcategory_view',compact('pages_prod','subcate','products','company','images','subcats'));
     }
 }
+
+
+
+// asdf
