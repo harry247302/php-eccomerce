@@ -57,3 +57,7 @@ class PageController extends Controller
         return view('appointment',compact('pages_about'));
     }
 }
+
+
+
+// asdfasdfasdfasd
