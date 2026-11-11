@@ -1,0 +1,322 @@
+@extends('admin.master')
+
+
+@section('content')
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title"> Create Product </h3>
+       <a href="{{ url()->previous() }}" class="btn btn-secondary" style="width:10%"><span class="icon-keyboard_backspace"></span> Back</a>
+    </div>
+    <div class="row">
+        <div class="col-12 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                   
+                    <form action="{{ url('admin/products') }}" class="form-sample" method="post" enctype="multipart/form-data">
+                        @csrf
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="name" required>
+                                    </div>
+                                </div>
+                            </div>
+                              <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Category</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="category_id" >
+                                             <option value="">NO CATEGORY</option>
+                                            <?php $category = App\Model\Category::where('status','enable')->get() ?>
+                                            @foreach($category as $row)
+                                            <option value="{{ $row->id }}">{{ $row->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                               <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">SubCategory</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="subcategory_id" >
+                                             <option value="">NO SUBCATEGORY</option>
+                                            <?php $subcategory = App\Model\Subcategory::where('status','enable')->get() ?>
+                                            @foreach($subcategory as $row)
+                                            <option value="{{ $row->id }}">{{ $row->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                              <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Short Description</label>
+                                    <div class="col-sm-10">
+                                        <textarea name="short_description" class="form-control">
+                                        </textarea>
+                                        <script>
+                                            CKEDITOR.replace('short_description');
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Long Description</label>
+                                    <div class="col-sm-10">
+                                        <textarea name="long_description" class="form-control">
+                                        </textarea>
+                                        <script>
+                                            CKEDITOR.replace('long_description');
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                           <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Main Image</label>
+                                    <div class="col-sm-10">
+                                        <input type="file" class="form-control" name="main_image" >
+                                        <!-- <p>Image resolution must be 1350*560</p>-->
+                                    </div>
+                                </div>
+                            </div> 
+                          
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Extra Image</label>
+                                    <div class="col-sm-10">
+                                        <input type="file" class="form-control" name="image[]"  multiple >
+                                        <!-- <p>Image resolution must be 1350*560</p>-->
+                                    </div>
+                                </div>
+                            </div>
+                            
+                          
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Additional Info</label>
+                                    <div class="col-sm-10">
+                                        <textarea name="additional_info" class="form-control">
+                                        </textarea>
+                                        <script>
+                                            CKEDITOR.replace('additional_info');
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                              <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Application</label>
+                                    <div class="col-sm-10">
+                                        <textarea name="application" class="form-control">
+                                        </textarea>
+                                        <script>
+                                            CKEDITOR.replace('application');
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Technical Specification</label>
+                                    <div class="col-sm-10">
+                                        <textarea name="technical" class="form-control">
+                                        </textarea>
+                                        <script>
+                                            CKEDITOR.replace('technical');
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                             
+                            
+                            
+                              <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Price</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="price" >
+                                    </div>
+                                </div>
+                            </div>
+                            
+                             <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Minimum Order Amount</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="minimum_order_amount">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                             <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Meta Title</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="meta_title" >
+                                    </div>
+                                </div>
+                            </div>
+                              <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Meta Description</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="meta_description" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Meta Keywords</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="meta_keywords" >
+                                    </div>
+                                </div>
+                            </div>
+
+        
+                          
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Stock Status</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="stock_status" >
+                                            <option>in stock</option>
+                                            <option>out of stock</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Product Status</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="product_status" >
+                                            <option>enable</option>
+                                            <option>disable</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Is Popular ?</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="is_popular" >
+                                            <option>no</option>
+                                            <option>yes</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Is Featured ?</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="is_featured">
+                                            <option>no</option>
+                                            <option>yes</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                              
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Is Hot Product ?</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="is_hot" >
+                                            <option>no</option>
+                                            <option>yes</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                              <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Is Best Product ?</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="is_best" >
+                                            <option>no</option>
+                                            <option>yes</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                              <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Is New Arraival ?</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="is_new_arraival" >
+                                            <option>no</option>
+                                            <option>yes</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                              <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Is Special Offer ?</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="is_special_offer" >
+                                            <option>no</option>
+                                            <option>yes</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                              <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Set as Home ?</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="set_as_home" >
+                                            <option>no</option>
+                                            <option>yes</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                         
+                            
+                            
+                            
+                            
+                        </div>
+
+                        <div class="row">
+
+                        </div>
+
+
+
+                        <button type="submit" class="btn btn-primary mr-2 form-control" style="background-color:#005cb7;">Submit</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

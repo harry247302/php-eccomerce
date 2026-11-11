@@ -1,0 +1,5 @@
+User-agent: *
+allow:
+disallow:
+
+sitemap: https://hhiron-in-192370.hostingersite.com/sitemap.xml

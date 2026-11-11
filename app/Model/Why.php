@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Model;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+
+class Why extends Model
+{
+     use Notifiable;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        
+    'title', 'image', 'short_description', 'order_by', 'status',
+        
+       
+    ];
+}
